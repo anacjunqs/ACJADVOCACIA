@@ -1,0 +1,62 @@
+{
+  "common": {
+    "skipToContent": "Skip to content",
+    "scheduleConsultation": "Schedule a consultation",
+    "whatsapp": "Chat on WhatsApp",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "backToHome": "Back to home",
+    "opensInNewTab": "(opens in a new tab)",
+    "close": "Close",
+    "loading": "Loading…"
+  },
+  "header": {
+    "home": "{name} — home page",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile menu",
+    "language": "Language",
+    "switchTo": "Switch to {language}",
+    "switchToLabel": { "pt": "Português", "en": "English" }
+  },
+  "nav": {
+    "practiceAreas": "Practice Areas",
+    "allAreas": "See all practice areas",
+    "hub": "Cross-Border Families",
+    "hubHint": "For those living between Brazil and other countries",
+    "about": "About the Founder",
+    "values": "Our Values",
+    "articlesVideos": "Articles & Videos",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  },
+  "footer": {
+    "navLabel": "Footer links",
+    "legalLabel": "Legal information",
+    "explore": "Explore",
+    "legal": "Legal information",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "cookies": "Cookies",
+    "cookiePreferences": "Cookie preferences",
+    "contact": "Contact",
+    "follow": "Social",
+    "lawyerLine": "{name} · OAB/{uf} {number}",
+    "rights": "© {year} {name}. All rights reserved."
+  },
+  "errors": {
+    "notFound": {
+      "title": "We could not find this page",
+      "text": "The address may have changed or been typed differently. You can go back to the home page or get in touch.",
+      "home": "Go to the home page",
+      "contact": "Contact us"
+    },
+    "serverError": {
+      "title": "Something did not go as expected",
+      "text": "We had a problem opening this page. Please try again in a moment. If it continues, get in touch.",
+      "retry": "Try again",
+      "home": "Go to the home page"
+    }
+  }
+}

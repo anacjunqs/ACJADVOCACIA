@@ -15,7 +15,7 @@ const base =
   "inline-flex min-h-12 items-center justify-center gap-2 rounded-control px-6 py-3 text-center font-bold leading-tight transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-navy text-white hover:bg-navy-800 focus-visible:outline-navy",
+  primary: "bg-navy text-white hover:bg-navy-800",
   secondary: "bg-gold text-navy hover:bg-gold-200",
   ghost: "border-2 border-navy text-navy hover:bg-navy-50",
   "ghost-on-navy": "border-2 border-white text-white hover:bg-white/10",

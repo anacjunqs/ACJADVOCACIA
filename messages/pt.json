@@ -1,0 +1,62 @@
+{
+  "common": {
+    "skipToContent": "Pular para o conteúdo",
+    "scheduleConsultation": "Agendar consulta",
+    "whatsapp": "Falar pelo WhatsApp",
+    "learnMore": "Saiba mais",
+    "readMore": "Ler mais",
+    "backToHome": "Voltar para o início",
+    "opensInNewTab": "(abre em nova aba)",
+    "close": "Fechar",
+    "loading": "Carregando…"
+  },
+  "header": {
+    "home": "{name} — página inicial",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "mainNav": "Navegação principal",
+    "mobileNav": "Menu para celular",
+    "language": "Idioma",
+    "switchTo": "Mudar para {language}",
+    "switchToLabel": { "pt": "Português", "en": "English" }
+  },
+  "nav": {
+    "practiceAreas": "Áreas de Atuação",
+    "allAreas": "Ver todas as áreas",
+    "hub": "Famílias entre Países",
+    "hubHint": "Para quem vive entre o Brasil e outros países",
+    "about": "Sobre a Fundadora",
+    "values": "Nossos Valores",
+    "articlesVideos": "Artigos e Vídeos",
+    "testimonials": "Depoimentos",
+    "contact": "Contato"
+  },
+  "footer": {
+    "navLabel": "Links do rodapé",
+    "legalLabel": "Informações legais",
+    "explore": "Explorar",
+    "legal": "Informações legais",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "cookies": "Cookies",
+    "cookiePreferences": "Preferências de cookies",
+    "contact": "Contato",
+    "follow": "Redes",
+    "lawyerLine": "{name} · OAB/{uf} {number}",
+    "rights": "© {year} {name}. Todos os direitos reservados."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Não encontramos esta página",
+      "text": "O endereço pode ter mudado ou ter sido digitado de outra forma. Você pode voltar ao início ou falar com a gente.",
+      "home": "Ir para o início",
+      "contact": "Entrar em contato"
+    },
+    "serverError": {
+      "title": "Algo não saiu como esperado",
+      "text": "Tivemos um problema ao abrir esta página. Tente novamente em instantes. Se continuar, fale com a gente.",
+      "retry": "Tentar novamente",
+      "home": "Ir para o início"
+    }
+  }
+}
