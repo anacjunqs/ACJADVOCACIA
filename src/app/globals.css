@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de cor. Partem de três cores da marca:
+ *   navy #093247 · gold #EBC894 · white #FFFFFF
+ * Os tons derivados são misturas dessas três cores (ver tests/unit/contrast.test.ts).
+ * REGRA: dourado NUNCA como texto, ícone informativo ou borda funcional sobre claro.
+ * Dourado só como fundo de botão secundário (texto navy), sobre navy, ou filete decorativo.
+ */
+:root {
+  --white: #ffffff;
+
+  --navy-50: #f3f5f6;
+  --navy-100: #e6ebed;
+  --navy-200: #ced6da;
+  --navy-300: #9dadb5;
+  --navy-500: #53707e;
+  --navy-600: #3a5b6c;
+  --navy-700: #093247; /* azul da marca */
+  --navy-800: #072635;
+  --navy-900: #051c27;
+
+  --gold-50: #fcf7ef; /* creme de fundo */
+  --gold-100: #f8ecda;
+  --gold-200: #f3debf;
+  --gold-300: #ebc894; /* dourado da marca */
+
+  /* Semânticos */
+  --bg: var(--white);
+  --bg-alt: var(--gold-50);
+  --fg: var(--navy-700);
+  --fg-muted: var(--navy-600);
+  --border: var(--navy-200);
+  --primary: var(--navy-700);
+  --on-primary: var(--white);
+  --accent: var(--gold-300);
+  --on-accent: var(--navy-700);
+  --ring: var(--navy-700);
+
+  color-scheme: light;
+}
+
+/* Superfícies navy: texto branco ou dourado, anel de foco dourado */
+.surface-navy {
+  --bg: var(--navy-700);
+  --fg: var(--white);
+  --fg-muted: var(--navy-100);
+  --border: var(--navy-500);
+  --ring: var(--gold-300);
+  background-color: var(--navy-700);
+  color: var(--white);
+}
+.surface-navy-deep {
+  --bg: var(--navy-800);
+  --fg: var(--white);
+  --fg-muted: var(--navy-100);
+  --border: var(--navy-500);
+  --ring: var(--gold-300);
+  background-color: var(--navy-800);
+  color: var(--white);
+}
+.surface-cream {
+  --bg: var(--gold-50);
+  background-color: var(--gold-50);
+}
+
+@theme inline {
+  --color-white: var(--white);
+  --color-navy-50: var(--navy-50);
+  --color-navy-100: var(--navy-100);
+  --color-navy-200: var(--navy-200);
+  --color-navy-300: var(--navy-300);
+  --color-navy-500: var(--navy-500);
+  --color-navy-600: var(--navy-600);
+  --color-navy: var(--navy-700);
+  --color-navy-800: var(--navy-800);
+  --color-navy-900: var(--navy-900);
+  --color-gold-50: var(--gold-50);
+  --color-gold-100: var(--gold-100);
+  --color-gold-200: var(--gold-200);
+  --color-gold: var(--gold-300);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-surface: var(--bg);
+  --color-surface-alt: var(--bg-alt);
+  --color-line: var(--border);
+
+  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-source-sans), "Segoe UI", system-ui, sans-serif;
+
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+  --shadow-soft: 0 1px 2px rgb(9 50 71 / 0.06), 0 8px 24px -12px rgb(9 50 71 / 0.18);
+}
+
+/* Escala tipográfica: 17px no celular, 18px a partir de lg */
+html {
+  font-size: 106.25%;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5.5rem;
+  scroll-padding-bottom: 6rem;
+  scroll-behavior: smooth;
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 112.5%;
+    scroll-padding-bottom: 2rem;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.3;
+}
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* Foco visível: anel navy sobre claro, dourado sobre navy (via --ring) */
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+::selection {
+  background: var(--gold-200);
+  color: var(--navy-700);
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--navy-700);
+  color: var(--white);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-control);
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  --ring: var(--gold-300);
+}
+
+/* Filete dourado: puramente decorativo */
+.rule-gold {
+  display: block;
+  width: 3rem;
+  height: 2px;
+  background: var(--gold-300);
+}
+
+/* Acordeão nativo (<details>) */
+.acc > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.acc > summary::-webkit-details-marker {
+  display: none;
+}
+.acc > summary .chev {
+  transition: transform 180ms ease;
+}
+.acc[open] > summary .chev {
+  transform: rotate(180deg);
+}
+
+/* Texto longo (artigos, páginas legais) */
+.prose-acj {
+  max-width: 68ch;
+  font-size: 1rem;
+}
+.prose-acj > * + * {
+  margin-top: 1.1em;
+}
+.prose-acj h2 {
+  font-size: 1.75rem;
+  margin-top: 2.2em;
+}
+.prose-acj h3 {
+  font-size: 1.35rem;
+  margin-top: 1.8em;
+}
+.prose-acj a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-acj a:hover {
+  text-decoration-thickness: 2px;
+}
+.prose-acj ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+.prose-acj ol {
+  list-style: decimal;
+  padding-left: 1.4em;
+}
+.prose-acj li + li {
+  margin-top: 0.4em;
+}
+.prose-acj blockquote {
+  border-left: 3px solid var(--gold-300); /* decorativo */
+  padding-left: 1.1em;
+  font-family: var(--font-serif);
+  font-size: 1.2em;
+  color: var(--fg);
+}
+.prose-acj table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.prose-acj th,
+.prose-acj td {
+  border: 1px solid var(--border);
+  padding: 0.6em 0.8em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-acj th {
+  background: var(--navy-50);
+}
+.prose-acj figure img {
+  border-radius: var(--radius-card);
+}
+.prose-acj figcaption {
+  color: var(--fg-muted);
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+
+/* Marcadores de pendência (somente fora de produção) */
+mark[data-pending] {
+  background: #fff3a3;
+  color: #3b2f00;
+  padding: 0 0.2em;
+  border-radius: 3px;
+  outline: 1px dashed #8a6d00;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
