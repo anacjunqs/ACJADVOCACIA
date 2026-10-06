@@ -14,6 +14,7 @@ import { pick } from "@/lib/i18n/localize";
 import { hub, pillars } from "@/lib/services/catalog";
 import { whatsappLink } from "@/lib/nav";
 import { absoluteUrl } from "@/lib/seo/site";
+import { POPULAR_COUNTRIES, countryOptions, dialCodes } from "@/lib/countries";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -34,6 +35,8 @@ export default async function ContactPage({ params }: Props) {
     { value: "unsure", label: t("fields.areaUnsure") },
   ];
   const wa = whatsappLink(settings.whatsapp, pick(settings.whatsappMessage, locale).text);
+  const countries = countryOptions(locale);
+  const popular = POPULAR_COUNTRIES.flatMap((c) => countries.find((x) => x.code === c) ?? []);
 
   const page = {
     "@context": "https://schema.org",
@@ -63,7 +66,7 @@ export default async function ContactPage({ params }: Props) {
                 </div>
               </aside>
               <div className="mt-6">
-                <ContactForm areas={areas} whatsappHref={wa} />
+                <ContactForm areas={areas} whatsappHref={wa} countries={countries} popular={popular} dials={dialCodes()} />
               </div>
             </div>
             <ContactInfo settings={settings} locale={locale} />

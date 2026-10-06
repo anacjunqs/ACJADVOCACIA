@@ -52,11 +52,15 @@ function buildComponents(ids: Map<string, string>): PortableTextComponents {
               {head && (
                 <thead>
                   <tr>
-                    {(head.cells ?? []).map((c, i) => (
-                      <th key={i} scope="col">
-                        {c}
-                      </th>
-                    ))}
+                    {(head.cells ?? []).map((c, i) =>
+                      c.trim() ? (
+                        <th key={i} scope="col">
+                          {c}
+                        </th>
+                      ) : (
+                        <td key={i} />
+                      ),
+                    )}
                   </tr>
                 </thead>
               )}

@@ -80,6 +80,7 @@ export async function Header({ locale }: { locale: AppLocale }) {
         whatsappHref={waHref}
         whatsappLabel={tc("whatsapp")}
         newTabLabel={tc("opensInNewTab")}
+        ariaLabel={tc("quickActions")}
       />
     </>
   );

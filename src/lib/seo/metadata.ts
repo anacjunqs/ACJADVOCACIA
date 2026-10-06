@@ -47,19 +47,19 @@ export function pageMetadata(o: Options): Metadata {
 
   return {
     title,
-    description,
+    ...(description ? { description } : {}),
     alternates: { canonical, languages },
     robots: isIndexable() && !o.noindex ? { index: true, follow: true } : { index: false, follow: false },
     openGraph: {
       type: o.type ?? "website",
       title,
-      description,
+      ...(description ? { description } : {}),
       url: canonical,
       locale: ogLocale[o.locale],
       alternateLocale: (["pt", "en"] as const).filter((l) => l !== o.locale && o.alternates[l]).map((l) => ogLocale[l]),
       ...(o.image ? { images: [{ url: o.image }] } : {}),
       ...(o.publishedTime ? { publishedTime: o.publishedTime } : {}),
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary_large_image", title, ...(description ? { description } : {}) },
   };
 }

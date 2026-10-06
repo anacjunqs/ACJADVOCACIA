@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { FilterChips } from "@/components/ui/filter-chips";
 import { VideoFacade } from "./video-facade";
 import { Txt } from "@/components/ui/txt";
 import { pick } from "@/lib/i18n/localize";
+import { setQueryParams, useQueryParams } from "@/lib/url-query";
 import type { ArticleCategory, Video } from "@/lib/content/types";
 import type { AppLocale } from "@/lib/i18n/routing";
 
@@ -22,14 +21,8 @@ export function VideoGrid({ videos, categories }: { videos: Video[]; categories:
   const t = useTranslations("videos");
   const ta = useTranslations("articles");
   const locale = useLocale() as AppLocale;
-  const params = useSearchParams();
-  const [cat, setCat] = useState(params.get("cat") ?? "");
-
-  const onChange = (id: string) => {
-    setCat(id);
-    const qs = id ? `?cat=${encodeURIComponent(id)}` : "";
-    window.history.replaceState(null, "", `${window.location.pathname}${qs}`);
-  };
+  const cat = useQueryParams().get("cat") ?? "";
+  const onChange = (id: string) => setQueryParams({ cat: id || undefined });
 
   const shown = videos.filter((v) => !cat || v.category?.id === cat);
   const options = categories.map((c) => ({ id: c.id, label: pick(c.title, locale).text }));
@@ -54,9 +47,9 @@ export function VideoGrid({ videos, categories }: { videos: Video[]; categories:
                 thumbnailUrl={v.thumbnailUrl}
                 duration={formatDuration(v.durationSeconds)}
               />
-              <h3 className="mt-3 font-serif text-2xl leading-snug">
+              <h2 className="mt-3 font-serif text-2xl leading-snug">
                 <Txt>{v.title}</Txt>
-              </h3>
+              </h2>
               {v.category && <p className="mt-1 text-sm font-semibold text-fg-muted">{pick(v.category.title, locale).text}</p>}
               <p className="mt-2 text-fg-muted">
                 <Txt>{v.description}</Txt>

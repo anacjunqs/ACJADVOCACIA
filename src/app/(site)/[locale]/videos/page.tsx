@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container, Section } from "@/components/ui/container";
 import { Loc } from "@/components/ui/loc";
@@ -46,9 +45,7 @@ export default async function VideosPage({ params }: Props) {
       </PageHero>
       <Section>
         <Container>
-          <Suspense fallback={null}>
-            <VideoGrid videos={videos} categories={categories} />
-          </Suspense>
+          <VideoGrid videos={videos} categories={categories} />
         </Container>
       </Section>
       <CtaBand locale={locale} />

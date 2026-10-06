@@ -1,15 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { FilterChips } from "@/components/ui/filter-chips";
 import { Icon } from "@/components/ui/icon";
 import { buttonClasses } from "@/components/ui/button-styles";
 import { ArticleCard } from "./article-card";
 import { pick } from "@/lib/i18n/localize";
 import { normalizeSearch, paginate } from "@/lib/list-filter";
-import type { ArticleCategory, ArticleSummary } from "@/lib/content/types";
+import { setQueryParams, useQueryParams } from "@/lib/url-query";
+import type { ArticleCardData, ArticleCategory } from "@/lib/content/types";
 import type { AppLocale } from "@/lib/i18n/routing";
 
 const PAGE_SIZE = 9;
@@ -19,31 +19,22 @@ const PAGE_SIZE = 9;
  * Roda no navegador sobre a lista já carregada (a página continua estática) e guarda o estado na URL
  * (?cat=&q=&page=), para a pessoa poder compartilhar ou voltar para o mesmo ponto.
  */
-export function ArticleBrowser({ articles, categories }: { articles: ArticleSummary[]; categories: ArticleCategory[] }) {
+export function ArticleBrowser({ articles, categories }: { articles: ArticleCardData[]; categories: ArticleCategory[] }) {
   const t = useTranslations("articles");
   const locale = useLocale() as AppLocale;
-  const params = useSearchParams();
-  const [cat, setCat] = useState(params.get("cat") ?? "");
-  const [q, setQ] = useState(params.get("q") ?? "");
-  const [page, setPage] = useState(Math.max(1, Number(params.get("page")) || 1));
-
-  const syncUrl = (next: { cat: string; q: string; page: number }) => {
-    const sp = new URLSearchParams();
-    if (next.cat) sp.set("cat", next.cat);
-    if (next.q) sp.set("q", next.q);
-    if (next.page > 1) sp.set("page", String(next.page));
-    const qs = sp.toString();
-    window.history.replaceState(null, "", `${window.location.pathname}${qs ? `?${qs}` : ""}`);
-  };
+  const params = useQueryParams();
+  const cat = params.get("cat") ?? "";
+  const q = params.get("q") ?? "";
+  const page = Math.max(1, Number(params.get("page")) || 1);
 
   const update = (patch: Partial<{ cat: string; q: string; page: number }>) => {
-    const next = { cat, q, page, ...patch };
+    const next: Record<string, string | undefined> = {};
+    if (patch.cat !== undefined) next.cat = patch.cat;
+    if (patch.q !== undefined) next.q = patch.q;
+    if (patch.page !== undefined) next.page = patch.page > 1 ? String(patch.page) : undefined;
     // Mudar filtro ou busca volta para a primeira página.
-    if (patch.page === undefined && (patch.cat !== undefined || patch.q !== undefined)) next.page = 1;
-    setCat(next.cat);
-    setQ(next.q);
-    setPage(next.page);
-    syncUrl(next);
+    else if (patch.cat !== undefined || patch.q !== undefined) next.page = undefined;
+    setQueryParams(next);
   };
 
   const filtered = useMemo(() => {
@@ -51,10 +42,10 @@ export function ArticleBrowser({ articles, categories }: { articles: ArticleSumm
     return articles.filter((a) => {
       if (cat && a.category?.id !== cat) return false;
       if (!needle) return true;
-      const hay = normalizeSearch(`${a.title} ${a.excerpt} ${a.category ? pick(a.category.title, locale).text : ""}`);
+      const hay = normalizeSearch(`${a.title} ${a.excerpt} ${a.categoryLabel ?? ""}`);
       return needle.split(" ").every((w) => hay.includes(w));
     });
-  }, [articles, cat, q, locale]);
+  }, [articles, cat, q]);
 
   const { items, pages, current } = paginate(filtered, page, PAGE_SIZE);
   const options = categories.map((c) => ({ id: c.id, label: pick(c.title, locale).text }));
@@ -100,7 +91,7 @@ export function ArticleBrowser({ articles, categories }: { articles: ArticleSumm
         <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a) => (
             <li key={a.id}>
-              <ArticleCard article={a} />
+              <ArticleCard article={a} headingLevel="h2" />
             </li>
           ))}
         </ul>

@@ -11,6 +11,7 @@ export function PillarCard({
   cta,
   featured,
   badge,
+  headingLevel = "h3",
 }: {
   title: string;
   summary: string;
@@ -19,7 +20,10 @@ export function PillarCard({
   cta: string;
   featured?: boolean;
   badge?: string;
+  /** Nível do título do cartão: h2 quando a lista vem logo abaixo do h1; h3 dentro de uma seção com h2. */
+  headingLevel?: "h2" | "h3";
 }) {
+  const Heading = headingLevel;
   const base =
     "group relative flex h-full flex-col rounded-card p-6 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-within:outline focus-within:outline-3 focus-within:outline-offset-3";
   if (featured) {
@@ -30,11 +34,11 @@ export function PillarCard({
         </span>
         <div className="flex-1">
           {badge && <p className="mb-2 text-sm font-bold uppercase tracking-[0.14em] accent-on-navy">{badge}</p>}
-          <h3 className="text-2xl sm:text-3xl">
+          <Heading className="text-2xl sm:text-3xl">
             <Link href={href as never} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
               {title}
             </Link>
-          </h3>
+          </Heading>
           <p className="mt-2 max-w-2xl text-navy-100">{summary}</p>
         </div>
         <span className="mt-4 inline-flex items-center gap-2 font-bold sm:mt-0" aria-hidden="true">
@@ -49,11 +53,11 @@ export function PillarCard({
       <span className="mb-5 flex size-12 items-center justify-center rounded-full bg-navy-50 text-navy">
         <Icon name={icon} size={26} />
       </span>
-      <h3 className="text-2xl leading-tight">
+      <Heading className="text-2xl leading-tight">
         <Link href={href as never} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
           {title}
         </Link>
-      </h3>
+      </Heading>
       <p className="mt-2 flex-1 text-fg-muted">{summary}</p>
       <span className="mt-5 inline-flex items-center gap-2 font-bold text-navy" aria-hidden="true">
         {cta}

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container, Section } from "@/components/ui/container";
 import { Loc } from "@/components/ui/loc";
@@ -8,6 +7,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ContentTabs } from "@/components/articles/tabs-nav";
 import { ArticleBrowser } from "@/components/articles/article-browser";
 import { categoriesOf, getArticleSummaries } from "@/lib/content/articles";
+import { toCardData } from "@/lib/content/article-card-data";
 import { getPageTexts } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
 import { pageMetadata, bothLocales } from "@/lib/seo/metadata";
@@ -41,9 +41,7 @@ export default async function ArticlesPage({ params }: Props) {
       </PageHero>
       <Section>
         <Container>
-          <Suspense fallback={null}>
-            <ArticleBrowser articles={articles} categories={categories} />
-          </Suspense>
+          <ArticleBrowser articles={toCardData(articles, locale)} categories={categories} />
         </Container>
       </Section>
       <CtaBand locale={locale} />

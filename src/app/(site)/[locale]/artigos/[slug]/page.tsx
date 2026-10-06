@@ -15,6 +15,7 @@ import { ArticleCard } from "@/components/articles/article-card";
 import { VideoSection } from "@/components/video/video-section";
 import { getArticle, getArticleParams, getRelatedArticles, getVideoById } from "@/lib/content/articles";
 import { getSettings } from "@/lib/content";
+import { toCardData } from "@/lib/content/article-card-data";
 import { getLocaleParam } from "@/lib/i18n/params";
 import type { AppLocale } from "@/lib/i18n/routing";
 import { pageMetadata, pathFor } from "@/lib/seo/metadata";
@@ -195,7 +196,7 @@ export default async function ArticlePage(props: Props) {
               {t("related")}
             </h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((a) => (
+              {toCardData(related, locale).map((a) => (
                 <li key={a.id}>
                   <ArticleCard article={a} />
                 </li>

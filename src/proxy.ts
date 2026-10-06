@@ -5,5 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Ignora API, Studio, arquivos internos e arquivos com extensão (imagens, ícones, etc.)
-  matcher: ["/((?!api|studio|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|studio|_next|_vercel|icon|apple-icon|.*\\..*).*)"],
 };

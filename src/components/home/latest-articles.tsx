@@ -4,12 +4,13 @@ import { Container, Section } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { ArticleCard } from "@/components/articles/article-card";
 import { getArticleSummaries } from "@/lib/content/articles";
+import { toCardData } from "@/lib/content/article-card-data";
 import type { AppLocale } from "@/lib/i18n/routing";
 
 /** Os 3 artigos mais recentes no idioma. Sem artigos publicados, a seção não aparece. */
 export async function LatestArticles({ locale }: { locale: AppLocale }) {
   const [t, all] = await Promise.all([getTranslations("home"), getArticleSummaries(locale)]);
-  const latest = all.slice(0, 3);
+  const latest = toCardData(all.slice(0, 3), locale);
   if (latest.length === 0) return null;
   return (
     <Section labelledBy="latest-articles-title">

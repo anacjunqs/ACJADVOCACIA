@@ -43,6 +43,7 @@ export default async function AreasIndexPage({ params }: Props) {
           <div className="mb-6">
             <PillarCard
               featured
+              headingLevel="h2"
               badge={t("hubBadge")}
               title={hub.title[locale]}
               summary={t("hubCardText")}
@@ -55,6 +56,7 @@ export default async function AreasIndexPage({ params }: Props) {
             {pillars.map((p) => (
               <li key={p.id}>
                 <PillarCard
+                  headingLevel="h2"
                   title={p.title[locale]}
                   summary={p.summary[locale]}
                   icon={pillarIcon[p.id]}

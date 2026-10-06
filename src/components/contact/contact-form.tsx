@@ -1,16 +1,17 @@
 "use client";
 
-import { useActionState, useEffect, useMemo, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Icon } from "@/components/ui/icon";
 import { buttonClasses } from "@/components/ui/button-styles";
 import { submitContact, type ContactState } from "@/app/(site)/[locale]/contato/actions";
-import { COUNTRIES, POPULAR_COUNTRIES, countryOptions, dialCodes } from "@/lib/countries";
-import { MESSAGE_MAX } from "@/lib/form/schema";
+import { COUNTRIES } from "@/lib/countries";
+import { MESSAGE_MAX } from "@/lib/form/constants";
 import type { AppLocale } from "@/lib/i18n/routing";
 
 export type AreaOption = { value: string; label: string };
+export type CountryOption = { code: string; name: string; dial: string };
 
 const initial: ContactState = { status: "idle" };
 
@@ -44,7 +45,20 @@ function Field({ id, label, error, hint, children, required }: { id: string; lab
  * Formulário de contato. Mobile primeiro: teclados certos (e-mail, telefone), preenchimento automático,
  * alvos de 48px e erros em português ou inglês, ligados ao campo. Só envia um e-mail; nada é guardado em banco.
  */
-export function ContactForm({ areas, whatsappHref }: { areas: AreaOption[]; whatsappHref?: string }) {
+export function ContactForm({
+  areas,
+  whatsappHref,
+  countries,
+  popular,
+  dials,
+}: {
+  areas: AreaOption[];
+  whatsappHref?: string;
+  /** Lista de países montada NO SERVIDOR (o ICU do navegador ordena e escreve nomes de forma ligeiramente diferente). */
+  countries: CountryOption[];
+  popular: CountryOption[];
+  dials: string[];
+}) {
   const t = useTranslations("contact");
   const tc = useTranslations("common");
   const locale = useLocale() as AppLocale;
@@ -54,9 +68,6 @@ export function ContactForm({ areas, whatsappHref }: { areas: AreaOption[]; what
   const [dialTouched, setDialTouched] = useState(false);
   const summaryRef = useRef<HTMLDivElement>(null);
 
-  const countries = useMemo(() => countryOptions(locale), [locale]);
-  const popular = useMemo(() => POPULAR_COUNTRIES.map((c) => countries.find((x) => x.code === c)).filter((x): x is NonNullable<typeof x> => Boolean(x)), [countries]);
-  const dials = useMemo(() => dialCodes(), []);
   const v = state.values ?? {};
   const errs = state.fieldErrors ?? {};
   const errorFor = (k: keyof typeof errs) => (errs[k] ? t(`errors.${errs[k]}` as never) : undefined);

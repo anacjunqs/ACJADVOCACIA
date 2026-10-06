@@ -1,15 +1,18 @@
 import { Newsreader, Source_Sans_3 } from "next/font/google";
 
-/** Títulos: serifa Newsreader (eixo óptico, boa em tela pequena). Corpo: Source Sans 3 (humanista). */
+/**
+ * Títulos: serifa Newsreader (boa em tela pequena). Corpo: Source Sans 3 (humanista).
+ * Só o subconjunto latino (cobre português e inglês) e só os pesos usados: menos bytes, LCP mais rápido.
+ */
 export const serif = Newsreader({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-newsreader",
   display: "swap",
-  style: ["normal", "italic"],
 });
 
 export const sans = Source_Sans_3({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   variable: "--font-source-sans",
   display: "swap",
 });

@@ -19,15 +19,15 @@ export function CookieBanner() {
       {showBanner && (
         <section
           aria-label={t("bannerLabel")}
-          className="fixed inset-x-3 bottom-[5.25rem] z-50 rounded-card border border-line bg-white p-4 shadow-soft xl:bottom-4 xl:left-auto xl:right-4 xl:max-w-md"
+          className="fixed inset-x-3 bottom-[5.25rem] z-50 rounded-card border border-line bg-white p-3 shadow-soft xl:bottom-4 xl:left-auto xl:right-4 xl:max-w-md xl:p-4"
         >
-          <p className="text-base">
+          <p className="text-sm leading-snug">
             {t("bannerText")}{" "}
             <Link href="/cookies" className="font-semibold underline underline-offset-4">
               {t("learnMore")}
             </Link>
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             <button type="button" onClick={acceptAll} className={buttonClasses("primary", "md", "flex-1 px-4")}>
               {t("acceptAll")}
             </button>

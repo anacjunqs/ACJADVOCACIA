@@ -11,7 +11,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
   return (
     <Section>
       <Container narrow className="text-center">
-        <p aria-hidden="true" className="font-serif text-7xl text-navy-200">
+        <p aria-hidden="true" className="font-serif text-7xl text-navy-500">
           500
         </p>
         <h1 className="mt-2 text-3xl sm:text-4xl">{t("title")}</h1>

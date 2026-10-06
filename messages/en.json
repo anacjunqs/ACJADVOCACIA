@@ -8,7 +8,8 @@
     "backToHome": "Back to home",
     "opensInNewTab": "(opens in a new tab)",
     "close": "Close",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "quickActions": "Contact shortcuts"
   },
   "header": {
     "home": "{name} — home page",
@@ -137,8 +138,8 @@
   },
   "consent": {
     "bannerLabel": "Cookie notice",
-    "bannerText": "We only use what is necessary for the site to work. With your permission, we also measure site usage and load third-party videos and maps.",
-    "learnMore": "Learn more",
+    "bannerText": "We only use what is necessary. With your permission, we also measure site use and load third-party videos and maps.",
+    "learnMore": "See the Cookies page",
     "acceptAll": "Accept all",
     "rejectOptional": "Necessary only",
     "customize": "Customize",

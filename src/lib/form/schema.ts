@@ -1,24 +1,13 @@
 import { z } from "zod";
 import { isCountry } from "@/lib/countries";
 
-export const AREA_VALUES = [
-  "planejamento-patrimonial",
-  "casamento-uniao",
-  "divorcio-partilha",
-  "filhos-guarda",
-  "alimentos",
-  "filiacao",
-  "inventario-sucessoes",
-  "hub",
-  "unsure",
-] as const;
-export type AreaValue = (typeof AREA_VALUES)[number];
+import { AREA_VALUES, MESSAGE_MAX, MESSAGE_MIN } from "./constants";
+
+export { AREA_VALUES, MESSAGE_MAX, MESSAGE_MIN };
+export type { AreaValue } from "./constants";
 
 /** Remove quebras de linha e caracteres de controle (evita injeção de cabeçalhos e lixo no assunto do e-mail). */
 export const oneLine = (s: string): string => s.replace(/[\r\n\u0000-\u001f\u007f]+/g, " ").replace(/\s{2,}/g, " ").trim();
-
-export const MESSAGE_MIN = 10;
-export const MESSAGE_MAX = 3000;
 
 /**
  * Validação do formulário de contato (autoridade no servidor). As chaves dos erros são traduzidas na interface.

@@ -109,6 +109,12 @@ export type ArticleSummary = {
   draft?: boolean;
 };
 
+/**
+ * Dados prontos para o cartão de artigo. Data e categoria já vêm formatadas do SERVIDOR: o ICU do navegador
+ * pode escrever "out." de outro jeito que o do Node e causaria erro de hidratação.
+ */
+export type ArticleCardData = ArticleSummary & { dateLabel: string; categoryLabel?: string };
+
 export type Article = ArticleSummary & {
   body: RichBlock[];
   pillar?: PillarOrHubId;

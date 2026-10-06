@@ -8,7 +8,7 @@ export default async function NotFound() {
   return (
     <Section>
       <Container narrow className="text-center">
-        <p aria-hidden="true" className="font-serif text-7xl text-navy-200">
+        <p aria-hidden="true" className="font-serif text-7xl text-navy-500">
           404
         </p>
         <h1 className="mt-2 text-3xl sm:text-4xl">{t("title")}</h1>

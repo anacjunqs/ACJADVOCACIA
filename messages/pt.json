@@ -8,7 +8,8 @@
     "backToHome": "Voltar para o início",
     "opensInNewTab": "(abre em nova aba)",
     "close": "Fechar",
-    "loading": "Carregando…"
+    "loading": "Carregando…",
+    "quickActions": "Atalhos de contato"
   },
   "header": {
     "home": "{name} — página inicial",
@@ -137,8 +138,8 @@
   },
   "consent": {
     "bannerLabel": "Aviso de cookies",
-    "bannerText": "Usamos apenas o necessário para o site funcionar. Com a sua permissão, também medimos o uso do site e carregamos vídeos e mapas de terceiros.",
-    "learnMore": "Saiba mais",
+    "bannerText": "Usamos só o necessário. Com a sua permissão, também medimos o uso do site e carregamos vídeos e mapas de terceiros.",
+    "learnMore": "Ver a página de Cookies",
     "acceptAll": "Aceitar tudo",
     "rejectOptional": "Só o necessário",
     "customize": "Personalizar",

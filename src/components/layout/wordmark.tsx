@@ -37,7 +37,7 @@ export function Wordmark({
         />
       ) : (
         <span className={cn("font-serif text-2xl leading-none tracking-tight", inverted ? "text-white" : "text-navy")}>
-          <span className="font-semibold">{first}</span>
+          <span className="font-medium">{first}</span>
           {rest.length > 0 && <span className="ml-1.5 font-normal">{rest.join(" ")}</span>}
         </span>
       )}
