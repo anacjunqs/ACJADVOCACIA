@@ -3,6 +3,7 @@
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Icon } from "@/components/ui/icon";
 import { buttonClasses } from "@/components/ui/button-styles";
+import { useConsent } from "@/components/consent/consent-provider";
 
 type Props = { label: string; whatsappHref?: string; whatsappLabel: string; newTabLabel: string; ariaLabel: string };
 
@@ -12,7 +13,9 @@ type Props = { label: string; whatsappHref?: string; whatsappLabel: string; newT
  */
 export function StickyCta({ label, whatsappHref, whatsappLabel, newTabLabel, ariaLabel }: Props) {
   const pathname = usePathname();
-  if (pathname === "/contato") return null;
+  const { consent, ready } = useConsent();
+  // Enquanto o aviso de cookies está na tela (no celular, também no rodapé), esta barra espera a escolha.
+  if (pathname === "/contato" || !ready || consent === null) return null;
   return (
     <aside
       aria-label={ariaLabel}

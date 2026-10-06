@@ -4,19 +4,23 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.18"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/launch-gate.ts && next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "audit:content": "node scripts/audit-placeholders.ts",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:words",
+    "audit:content": "node scripts/audit-placeholders.ts --write",
+    "audit:live": "node scripts/audit-placeholders.ts --live",
     "check:words": "node scripts/check-forbidden-words.ts",
-    "seed:sanity": "node scripts/seed-sanity.ts"
+    "seed:sanity": "node scripts/seed-sanity.ts",
+    "seed:sanity:dry": "node scripts/seed-sanity.ts --dry-run",
+    "perf": "node scripts/lighthouse.mjs http://localhost:3000 /pt /en /pt/areas-de-atuacao /pt/familias-entre-paises /pt/sobre /pt/contato"
   },
   "dependencies": {
     "@sanity/client": "^8.9.0",
