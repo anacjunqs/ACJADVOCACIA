@@ -93,23 +93,29 @@ export type ArticleCategory = { id: string; title: LS };
 
 export type PillarOrHubId = PillarSlug | "hub";
 
-export type Article = {
+/** Resumo de artigo para listagens (sem o corpo). */
+export type ArticleSummary = {
   id: string;
   slug: string;
   language: Locale;
   title: string;
   excerpt: string;
   cover?: ImageRef;
-  body: RichBlock[];
-  category?: { id: string; title: string };
+  category?: ArticleCategory;
   authorName: string;
   publishedAt: string; // ISO
-  pillar?: PillarOrHubId;
-  videoId?: string;
-  translationSlug?: string; // slug do artigo irmão no outro idioma
-  seo?: { title?: string; description?: string };
+  readingMinutes: number;
   /** Verdadeiro para conteúdo de exemplo que ainda não foi publicado. */
   draft?: boolean;
+};
+
+export type Article = ArticleSummary & {
+  body: RichBlock[];
+  pillar?: PillarOrHubId;
+  videoId?: string;
+  /** Artigo irmão no outro idioma, quando existe (gera hreflang e o link "ler em..."). */
+  translation?: { slug: string; language: Locale };
+  seo?: { title?: string; description?: string; ogImage?: ImageRef };
 };
 
 export type VideoProvider = "youtube" | "vimeo";
@@ -118,17 +124,20 @@ export type Video = {
   id: string;
   provider: VideoProvider;
   providerId: string;
+  /** Parâmetro extra do Vimeo para vídeos não listados. */
+  providerHash?: string;
   url: string;
   title: string;
   description: string;
   language: Locale;
-  category?: { id: string; title: string };
+  category?: ArticleCategory;
   pillar?: PillarOrHubId;
+  /** Miniatura enviada no CMS (opcional). */
   thumbnail?: ImageRef;
-  /** URL de miniatura resolvida no servidor (YouTube via next/image; Vimeo via oEmbed). */
+  /** URL de miniatura resolvida no servidor (YouTube direto; Vimeo via oEmbed). */
   thumbnailUrl?: string;
   publishedAt: string;
-  duration?: string; // ISO 8601, ex.: PT3M20S
+  durationSeconds?: number;
   draft?: boolean;
 };
 

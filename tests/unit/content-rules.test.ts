@@ -6,6 +6,9 @@ import { settingsSeed } from "@content/seed/settings";
 import { founderSeed } from "@content/seed/founder";
 import { pageTextsSeed } from "@content/seed/pages";
 import { pillarContentSeed } from "@content/seed/pillars";
+import { valuesSeed } from "@content/seed/values";
+import { legalSeed } from "@content/seed/legal";
+import { articlesSeed, categoriesSeed, videosSeed } from "@content/seed/articles";
 import { collectStrings, findForbidden } from "@/lib/forbidden-words";
 
 // Campos técnicos que não são texto de site (ex.: ícones, slugs, URLs).
@@ -26,6 +29,11 @@ describe("palavras proibidas", () => {
       ...violations("founder", founderSeed),
       ...violations("pages", pageTextsSeed),
       ...violations("pillars", pillarContentSeed),
+      ...violations("values", valuesSeed),
+      ...violations("legal", legalSeed),
+      ...violations("articles", articlesSeed),
+      ...violations("categories", categoriesSeed),
+      ...violations("videos", videosSeed),
       ...violations("services.titles", services.map((s) => ({ title: s.title, summary: s.summary }))),
       ...violations("services.groups", Object.values(groups).map((g) => g.title)),
       ...violations("services.pillars", pillars.map((p) => ({ title: p.title, summary: p.summary }))),

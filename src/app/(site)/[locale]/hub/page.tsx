@@ -10,6 +10,9 @@ import { ConsultActions } from "@/components/sections/consult-actions";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { HubAreas } from "@/components/services/hub-areas";
 import { Faq } from "@/components/services/faq";
+import { VideoSection } from "@/components/video/video-section";
+import { getVideoById } from "@/lib/content/articles";
+import { withThumbnails } from "@/lib/video-thumbnail";
 import { getPillarContent, getSettings } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
 import { pageMetadata, bothLocales } from "@/lib/seo/metadata";
@@ -40,6 +43,8 @@ export default async function HubPage({ params }: Props) {
     getPillarContent("hub"),
     getSettings(),
   ]);
+  const rawVideo = await getVideoById(content.videoId);
+  const [video] = rawVideo ? await withThumbnails([rawVideo]) : [];
   const { fromPillars, exclusive } = hubServices();
   const forWho = pick(content.whoFor, locale);
   const when = pick(content.whenToSeek, locale);
@@ -142,7 +147,8 @@ export default async function HubPage({ params }: Props) {
         </Container>
       </Section>
 
-      <Faq items={content.faq} locale={locale} />
+      {video && <VideoSection video={video} />}
+      <Faq items={content.faq} locale={locale} tone={video ? "cream" : "white"} />
       <CtaBand locale={locale} />
     </>
   );

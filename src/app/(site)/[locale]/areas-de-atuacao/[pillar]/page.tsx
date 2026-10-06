@@ -12,6 +12,9 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ServiceGroups } from "@/components/services/service-groups";
 import { InternationalBlock } from "@/components/services/international-block";
 import { Faq } from "@/components/services/faq";
+import { VideoSection } from "@/components/video/video-section";
+import { getVideoById } from "@/lib/content/articles";
+import { withThumbnails } from "@/lib/video-thumbnail";
 import { getPillarContent } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
 import { locales } from "@/lib/i18n/routing";
@@ -71,6 +74,8 @@ export default async function PillarPage(props: Props) {
   setRequestLocale(locale);
   const [t, tn, content] = await Promise.all([getTranslations("areas"), getTranslations("nav"), getPillarContent(pillar.id)]);
 
+  const rawVideo = await getVideoById(content.videoId);
+  const [video] = rawVideo ? await withThumbnails([rawVideo]) : [];
   const groups = servicesByPillar(pillar.id);
   const international = groups.flatMap((g) => g.services).filter((s) => s.international);
   const forWho = pick(content.whoFor, locale);
@@ -126,7 +131,8 @@ export default async function PillarPage(props: Props) {
       </Section>
 
       <InternationalBlock services={international} intro={content.internationalIntro} locale={locale} />
-      <Faq items={content.faq} locale={locale} />
+      {video && <VideoSection video={video} />}
+      <Faq items={content.faq} locale={locale} tone={video ? "cream" : "white"} />
       <CtaBand locale={locale} />
     </>
   );

@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "i.ytimg.com" },
+      { protocol: "https", hostname: "i.vimeocdn.com" },
+    ],
   },
 };
 

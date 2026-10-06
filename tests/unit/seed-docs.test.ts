@@ -17,6 +17,14 @@ describe("documentos do seed para o Sanity", () => {
     expect(types.filter((t) => t === "legalPage")).toHaveLength(3);
   });
 
+  it("artigos e vídeo de exemplo entram como rascunho (máximo de 2 artigos e 1 vídeo)", () => {
+    const articles = docs.filter((d) => d._type === "article");
+    const videos = docs.filter((d) => d._type === "video");
+    expect(articles).toHaveLength(2);
+    expect(videos).toHaveLength(1);
+    for (const d of [...articles, ...videos]) expect(d._id.startsWith("drafts.")).toBe(true);
+  });
+
   it("arrays têm _key e não há valores indefinidos", () => {
     const json = JSON.stringify(docs);
     expect(json).not.toContain("undefined");

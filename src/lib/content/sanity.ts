@@ -2,11 +2,25 @@ import type { PillarSlug } from "@content/services";
 import type { ValueIconName } from "@/components/ui/icon";
 import { valueIconNames } from "@/components/ui/icon";
 import { sanityImageSize, sanityImageUrl, type SanityImageSource } from "@/sanity/lib/image";
-import type { Founder, ImageRef, LegalPage, LegalPageId, LRich, LS, PageTexts, PillarContent, RichBlock, SiteSettings, ValueItem } from "./types";
+import type { Article, ArticleSummary, Founder, ImageRef, LegalPage, LegalPageId, LRich, Locale, LS, PageTexts, PillarContent, PillarOrHubId, RichBlock, SiteSettings, ValueItem, Video } from "./types";
+import { parseVideoUrl } from "@/lib/video-url";
 
 /* ───────── Consultas GROQ ───────── */
 
 const IMG = `{ "ref": asset._ref, crop, hotspot, "dims": asset->metadata.dimensions }`;
+
+const ARTICLE_SUMMARY = `
+  "id": _id, "slug": slug.current, language, title, excerpt,
+  "cover": cover ${IMG}, "coverAlt": cover.alt,
+  "category": category->{ "id": slug.current, title },
+  authorName, publishedAt, "chars": length(pt::text(body)),
+  "draft": _id in path("drafts.**")`;
+
+const VIDEO_FIELDS = `
+  "id": _id, url, title, description, language,
+  "category": category->{ "id": slug.current, title },
+  pillar, "thumbnail": thumbnail ${IMG}, "thumbAlt": thumbnail.alt,
+  publishedAt, durationSeconds, "draft": _id in path("drafts.**")`;
 
 export const queries = {
   settings: `*[_type == "siteSettings"][0]{
@@ -24,6 +38,19 @@ export const queries = {
     pillarId, intro, whoFor, whenToSeek, internationalIntro, faq, "videoId": relatedVideo->_id
   }`,
   legal: `*[_type == "legalPage" && pageId == $id][0]{ pageId, title, updatedAt, body }`,
+  articleList: `*[_type == "article" && language == $lang && defined(slug.current)] | order(publishedAt desc) { ${ARTICLE_SUMMARY} }`,
+  articleBySlug: `*[_type == "article" && language == $lang && slug.current == $slug][0]{
+    ${ARTICLE_SUMMARY},
+    body, pillar, "videoId": relatedVideo->_id,
+    "translation": coalesce(
+      translationOf->{ "slug": slug.current, language },
+      *[_type == "article" && translationOf._ref == ^._id][0]{ "slug": slug.current, language }
+    ),
+    "seo": seo{ title, description, "ogImage": ogImage ${IMG}, "ogAlt": ogImage.alt }
+  }`,
+  articleParams: `*[_type == "article" && defined(slug.current)]{ "slug": slug.current, language }`,
+  videoList: `*[_type == "video" && (!defined($lang) || language == $lang)] | order(publishedAt desc) { ${VIDEO_FIELDS} }`,
+  videoById: `*[_type == "video" && _id == $id][0]{ ${VIDEO_FIELDS} }`,
 };
 
 /* ───────── Utilitários de mapeamento ───────── */
@@ -186,5 +213,80 @@ export function mapLegal(raw: Raw, seed: LegalPage): LegalPage {
     title: lsOr(raw.title, seed.title),
     updatedAt: str(raw.updatedAt),
     body: toLRich(raw.body) ?? seed.body,
+  };
+}
+
+/* ───────── Artigos e vídeos ───────── */
+
+const minutesFromChars = (chars: number): number => Math.max(1, Math.round(chars / 5.8 / 200));
+const asLocale = (v: unknown): Locale => (v === "en" ? "en" : "pt");
+
+function mapCategory(v: unknown): { id: string; title: LS } | undefined {
+  const o = obj(v);
+  const id = str(o?.id);
+  const title = toLS(o?.title);
+  return id && title ? { id, title } : undefined;
+}
+
+export function mapArticleSummary(raw: Raw): ArticleSummary | undefined {
+  const slug = str(raw.slug);
+  const title = str(raw.title);
+  if (!slug || !title) return undefined;
+  const alt = str(raw.coverAlt);
+  return {
+    id: String(raw.id ?? slug),
+    slug,
+    language: asLocale(raw.language),
+    title,
+    excerpt: str(raw.excerpt) ?? "",
+    cover: toImage(raw.cover, alt ? { pt: alt, en: alt } : undefined),
+    category: mapCategory(raw.category),
+    authorName: str(raw.authorName) ?? "",
+    publishedAt: str(raw.publishedAt) ?? new Date(0).toISOString(),
+    readingMinutes: minutesFromChars(typeof raw.chars === "number" ? raw.chars : 0),
+    draft: raw.draft === true ? true : undefined,
+  };
+}
+
+export function mapArticle(raw: Raw): Article | undefined {
+  const summary = mapArticleSummary(raw);
+  if (!summary) return undefined;
+  const t = obj(raw.translation);
+  const seo = obj(raw.seo);
+  const ogAlt = str(seo?.ogAlt);
+  return {
+    ...summary,
+    body: Array.isArray(raw.body) ? (raw.body as RichBlock[]) : [],
+    pillar: str(raw.pillar) as PillarOrHubId | undefined,
+    videoId: str(raw.videoId),
+    translation: str(t?.slug) ? { slug: str(t?.slug)!, language: asLocale(t?.language) } : undefined,
+    seo: seo
+      ? { title: str(seo.title), description: str(seo.description), ogImage: toImage(seo.ogImage, ogAlt ? { pt: ogAlt, en: ogAlt } : undefined) }
+      : undefined,
+  };
+}
+
+export function mapVideo(raw: Raw): Video | undefined {
+  const url = str(raw.url);
+  const title = str(raw.title);
+  const parsed = url ? parseVideoUrl(url) : undefined;
+  if (!url || !title || !parsed) return undefined;
+  const alt = str(raw.thumbAlt);
+  const duration = typeof raw.durationSeconds === "number" ? raw.durationSeconds : undefined;
+  return {
+    id: String(raw.id ?? url),
+    provider: parsed.provider,
+    providerId: parsed.id,
+    providerHash: parsed.hash,
+    url,
+    title,
+    description: str(raw.description) ?? "",
+    language: asLocale(raw.language),
+    category: mapCategory(raw.category),
+    pillar: str(raw.pillar) as PillarOrHubId | undefined,
+    thumbnail: toImage(raw.thumbnail, alt ? { pt: alt, en: alt } : undefined),
+    publishedAt: str(raw.publishedAt) ?? new Date(0).toISOString(),
+    durationSeconds: duration,
+    draft: raw.draft === true ? true : undefined,
   };
 }

@@ -6,6 +6,8 @@ import { PillarsSummary } from "@/components/home/pillars-summary";
 import { ProcessSteps } from "@/components/home/process-steps";
 import { FounderTeaser } from "@/components/home/founder-teaser";
 import { ValuesHighlight } from "@/components/home/values-highlight";
+import { LatestArticles } from "@/components/home/latest-articles";
+import { FeaturedVideo } from "@/components/home/featured-video";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getFounder, getPageTexts, getSettings, getValues } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
@@ -53,6 +55,8 @@ export default async function Home({ params }: Props) {
       <ProcessSteps steps={settings.processSteps} locale={locale} />
       <FounderTeaser founder={founder} locale={locale} />
       <ValuesHighlight values={values} locale={locale} />
+      <LatestArticles locale={locale} />
+      <FeaturedVideo locale={locale} />
       <CtaBand locale={locale} />
       <JsonLd data={legalService} />
     </>

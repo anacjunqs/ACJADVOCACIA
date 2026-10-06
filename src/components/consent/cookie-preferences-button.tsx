@@ -1,12 +1,12 @@
 "use client";
 
-/**
- * Reabre as preferências de cookies. A lógica de consentimento chega na etapa 5;
- * por ora o botão dispara o evento que o banner passará a ouvir.
- */
+import { useConsent } from "./consent-provider";
+
+/** Reabre as preferências de cookies (rodapé). */
 export function CookiePreferencesButton({ label, className }: { label: string; className?: string }) {
+  const { openPreferences } = useConsent();
   return (
-    <button type="button" className={className} onClick={() => window.dispatchEvent(new Event("acj:open-consent"))}>
+    <button type="button" className={className} onClick={openPreferences}>
       {label}
     </button>
   );

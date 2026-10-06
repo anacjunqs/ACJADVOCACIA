@@ -8,6 +8,9 @@ import { serif, sans } from "@/lib/fonts";
 import { routing, htmlLang } from "@/lib/i18n/routing";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ConsentProvider } from "@/components/consent/consent-provider";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { Analytics } from "@/components/consent/analytics";
 import { getSettings } from "@/lib/content";
 import { pick } from "@/lib/i18n/localize";
 import { siteUrl, isIndexable } from "@/lib/seo/site";
@@ -43,6 +46,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
     <html lang={htmlLang[locale]} className={`${serif.variable} ${sans.variable}`}>
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider>
+          <ConsentProvider>
           <a href="#conteudo" className="skip-link">
             {t("skipToContent")}
           </a>
@@ -64,6 +68,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
               </div>
             </>
           )}
+            <CookieBanner />
+            <Analytics />
+          </ConsentProvider>
         </NextIntlClientProvider>
       </body>
     </html>
