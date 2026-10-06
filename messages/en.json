@@ -209,5 +209,67 @@
     "emptyFiltered": "No videos in this category.",
     "noThumbnail": "Thumbnail unavailable",
     "duration": "Duration: {value}"
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "formTitle": "Request a consultation",
+    "noticeTitle": "Before you send",
+    "notice": "Sending this message does not create an attorney-client relationship. Please do not include sensitive information, documents or other people's data.",
+    "fields": {
+      "name": "Your name",
+      "email": "Your email",
+      "phone": "Phone (with WhatsApp, if you have it)",
+      "dial": "Phone country code",
+      "country": "Country where you live",
+      "countryPlaceholder": "Select a country",
+      "popular": "Most chosen",
+      "all": "All countries",
+      "area": "Topic of interest",
+      "areaPlaceholder": "Select a topic",
+      "areaUnsure": "Not sure yet",
+      "message": "Tell us, in a few lines, what is going on",
+      "messageHint": "No documents and no sensitive information, please.",
+      "consent": "I agree to send this data so the firm can reply to my message, as described in the Privacy Policy.",
+      "privacyLink": "Privacy Policy",
+      "required": "required",
+      "honeypot": "Do not fill in this field"
+    },
+    "submit": "Send message",
+    "sending": "Sending…",
+    "errorSummary": "Please review the fields below:",
+    "errors": {
+      "name": "Enter your name.",
+      "email": "Enter a valid email.",
+      "phone": "Enter a valid phone number, digits only.",
+      "country": "Select the country where you live.",
+      "area": "Select a topic.",
+      "message": "Write at least a few words (minimum 10 characters).",
+      "messageLong": "The message is too long. Please keep it under 3,000 characters.",
+      "consent": "To send, you need to agree to the use of your data.",
+      "generic": "We could not send right now. Please try again in a moment or reach out on WhatsApp.",
+      "tooFast": "We wait a few seconds before accepting a submission. Please try again.",
+      "rateLimited": "Too many attempts in a short time. Please wait a few minutes and try again.",
+      "unavailable": "The contact form is not available yet. Please reach out on WhatsApp or by email."
+    },
+    "success": {
+      "title": "Message sent",
+      "text": "We received your message. We will get back to you to arrange the consultation.",
+      "whatsapp": "If you prefer, you can also reach us on WhatsApp."
+    },
+    "info": {
+      "title": "Other ways to reach us",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "hours": "Opening hours",
+      "timezone": "Time zone: {value}",
+      "video": "Video appointments",
+      "map": "Map",
+      "openMap": "Open in maps",
+      "loadMap": "Load the map",
+      "mapConsent": "To show the map here, we need to load content from Google, which may set cookies. You can also open the map in another tab.",
+      "mapTitle": "Map with the firm's location"
+    }
   }
 }

@@ -209,5 +209,67 @@
     "emptyFiltered": "Nenhum vídeo nessa categoria.",
     "noThumbnail": "Miniatura indisponível",
     "duration": "Duração: {value}"
+  },
+  "contact": {
+    "eyebrow": "Fale com a gente",
+    "formTitle": "Peça uma consulta",
+    "noticeTitle": "Antes de enviar",
+    "notice": "O envio desta mensagem não estabelece relação entre advogado e cliente. Não inclua informações sensíveis, documentos ou dados de outras pessoas.",
+    "fields": {
+      "name": "Seu nome",
+      "email": "Seu e-mail",
+      "phone": "Telefone (com WhatsApp, se tiver)",
+      "dial": "Código do país do telefone",
+      "country": "País onde você mora",
+      "countryPlaceholder": "Selecione o país",
+      "popular": "Mais escolhidos",
+      "all": "Todos os países",
+      "area": "Assunto de interesse",
+      "areaPlaceholder": "Selecione o assunto",
+      "areaUnsure": "Ainda não sei",
+      "message": "Conte, em poucas linhas, o que está acontecendo",
+      "messageHint": "Sem documentos e sem informações sensíveis, por favor.",
+      "consent": "Concordo em enviar estes dados para que o escritório responda ao meu contato, conforme a Política de Privacidade.",
+      "privacyLink": "Política de Privacidade",
+      "required": "obrigatório",
+      "honeypot": "Não preencha este campo"
+    },
+    "submit": "Enviar mensagem",
+    "sending": "Enviando…",
+    "errorSummary": "Revise os campos abaixo:",
+    "errors": {
+      "name": "Informe o seu nome.",
+      "email": "Informe um e-mail válido.",
+      "phone": "Informe um telefone válido, só com números.",
+      "country": "Selecione o país onde você mora.",
+      "area": "Selecione o assunto.",
+      "message": "Escreva ao menos algumas palavras (mínimo de 10 caracteres).",
+      "messageLong": "A mensagem está longa demais. Resuma em até 3.000 caracteres.",
+      "consent": "Para enviar, é preciso concordar com o uso dos dados.",
+      "generic": "Não foi possível enviar agora. Tente de novo em instantes ou fale pelo WhatsApp.",
+      "tooFast": "Esperamos alguns segundos antes de aceitar o envio. Tente de novo.",
+      "rateLimited": "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente de novo.",
+      "unavailable": "O envio por formulário ainda não está disponível. Fale com a gente pelo WhatsApp ou por e-mail."
+    },
+    "success": {
+      "title": "Mensagem enviada",
+      "text": "Recebemos o seu contato. Retornamos para combinar a consulta.",
+      "whatsapp": "Se preferir, você também pode falar pelo WhatsApp."
+    },
+    "info": {
+      "title": "Outras formas de contato",
+      "whatsapp": "WhatsApp",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "address": "Endereço",
+      "hours": "Horário de atendimento",
+      "timezone": "Fuso horário: {value}",
+      "video": "Atendimento por videoconferência",
+      "map": "Mapa",
+      "openMap": "Abrir no mapa",
+      "loadMap": "Carregar o mapa",
+      "mapConsent": "Para mostrar o mapa aqui, precisamos carregar conteúdo do Google, que pode gravar cookies. Você também pode abrir o mapa em outra aba.",
+      "mapTitle": "Mapa com a localização do escritório"
+    }
   }
 }
