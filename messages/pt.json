@@ -271,5 +271,14 @@
       "mapConsent": "Para mostrar o mapa aqui, precisamos carregar conteúdo do Google, que pode gravar cookies. Você também pode abrir o mapa em outra aba.",
       "mapTitle": "Mapa com a localização do escritório"
     }
+  },
+  "reviews": {
+    "title": "Avaliações no Google",
+    "ratingLabel": "{rating} de 5 estrelas",
+    "total": "{count, plural, one {# avaliação} other {# avaliações}} no Google",
+    "source": "Fonte: Google",
+    "viewAll": "Ver avaliações no Google",
+    "write": "Avaliar no Google",
+    "newTab": "(abre em nova aba)"
   }
 }

@@ -271,5 +271,14 @@
       "mapConsent": "To show the map here, we need to load content from Google, which may set cookies. You can also open the map in another tab.",
       "mapTitle": "Map with the firm's location"
     }
+  },
+  "reviews": {
+    "title": "Google reviews",
+    "ratingLabel": "{rating} out of 5 stars",
+    "total": "{count, plural, one {# review} other {# reviews}} on Google",
+    "source": "Source: Google",
+    "viewAll": "See reviews on Google",
+    "write": "Review us on Google",
+    "newTab": "(opens in a new tab)"
   }
 }

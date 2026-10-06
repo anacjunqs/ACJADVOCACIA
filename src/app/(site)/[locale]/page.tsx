@@ -8,6 +8,7 @@ import { FounderTeaser } from "@/components/home/founder-teaser";
 import { ValuesHighlight } from "@/components/home/values-highlight";
 import { LatestArticles } from "@/components/home/latest-articles";
 import { FeaturedVideo } from "@/components/home/featured-video";
+import { ReviewsSection } from "@/components/reviews/reviews-section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getFounder, getPageTexts, getSettings, getValues } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
@@ -57,6 +58,7 @@ export default async function Home({ params }: Props) {
       <ValuesHighlight values={values} locale={locale} />
       <LatestArticles locale={locale} />
       <FeaturedVideo locale={locale} />
+      <ReviewsSection variant="home" />
       <CtaBand locale={locale} />
       <JsonLd data={legalService} />
     </>
