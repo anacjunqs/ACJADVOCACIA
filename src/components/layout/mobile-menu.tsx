@@ -46,7 +46,7 @@ export function MobileMenu({ labels, hub, pillars, items, children }: Props) {
   }, [open, close]);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         ref={buttonRef}
         type="button"

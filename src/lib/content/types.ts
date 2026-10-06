@@ -59,21 +59,21 @@ export type Founder = {
 
 export type ValueItem = { title: LS; description: LS; icon: ValueIconName };
 
-export type HomePage = {
-  heroTitle: LS;
-  heroSubtitle: LS;
-  primaryCta: LS;
-  whatsappCta: LS;
-  hubTitle: LS;
-  hubText: LS;
-  pillarsTitle: LS;
-  processTitle: LS;
-  founderTitle: LS;
-  valuesTitle: LS;
-  articlesTitle: LS;
-  videoTitle: LS;
-  finalCtaTitle: LS;
-  finalCtaText: LS;
+/** Textos editáveis das páginas (um único documento no CMS: "Textos das páginas"). */
+export type PageTexts = {
+  home: {
+    heroTitle: LS;
+    heroSubtitle: LS;
+    hubText: LS;
+    finalCtaTitle: LS;
+    finalCtaText: LS;
+  };
+  areasIndex: { intro: LS };
+  values: { intro: LS };
+  articles: { intro: LS };
+  videos: { intro: LS };
+  contact: { intro: LS };
+  testimonials: { intro: LS };
 };
 
 export type FaqItem = { question: LS; answer: LS };

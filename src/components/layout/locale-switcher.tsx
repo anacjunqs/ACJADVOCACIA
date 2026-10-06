@@ -30,7 +30,7 @@ export function LocaleSwitcher({ targetName, ariaLabel, className }: Props) {
       hrefLang={target}
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex min-h-11 items-center rounded-control px-3 text-base font-bold text-navy underline-offset-4 hover:bg-navy-50 hover:underline",
+        "inline-flex min-h-11 items-center rounded-control px-2 text-base sm:px-3 font-bold text-navy underline-offset-4 hover:bg-navy-50 hover:underline",
         className,
       )}
     >

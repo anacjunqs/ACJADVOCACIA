@@ -12,13 +12,16 @@
   },
   "header": {
     "home": "{name} — página inicial",
-    "openMenu": "Abrir menu",
-    "closeMenu": "Fechar menu",
+    "openMenu": "Menu",
+    "closeMenu": "Fechar",
     "mainNav": "Navegação principal",
     "mobileNav": "Menu para celular",
     "language": "Idioma",
     "switchTo": "Mudar para {language}",
-    "switchToLabel": { "pt": "Português", "en": "English" }
+    "switchToLabel": {
+      "pt": "Português",
+      "en": "English"
+    }
   },
   "nav": {
     "practiceAreas": "Áreas de Atuação",
@@ -58,5 +61,36 @@
       "retry": "Tentar novamente",
       "home": "Ir para o início"
     }
+  },
+  "breadcrumbs": {
+    "label": "Você está em",
+    "home": "Início"
+  },
+  "areas": {
+    "eyebrow": "Área de atuação",
+    "indexEyebrow": "O que fazemos",
+    "forWho": "Para quem é",
+    "whenToSeek": "Quando procurar",
+    "servicesTitle": "Como podemos ajudar",
+    "servicesIntro": "Os serviços estão organizados por grupo. Abra o grupo mais próximo da sua situação.",
+    "servicesCount": "{count, plural, one {# serviço} other {# serviços}}",
+    "internationalTitle": "Atuação internacional",
+    "internationalBadge": "Atuação internacional",
+    "seeHub": "Conheça Famílias entre Países",
+    "faqTitle": "Perguntas frequentes",
+    "helpTitle": "Não sabe em qual área o seu caso se encaixa?",
+    "helpText": "Tudo bem. Conte a sua situação e ajudamos a encontrar o caminho.",
+    "hubBadge": "Destaque",
+    "hubCardText": "Para quem vive entre o Brasil e outros países: casamento, filhos, bens e herança em mais de um lugar.",
+    "openArea": "Ver a área {title}"
+  },
+  "hub": {
+    "eyebrow": "Famílias entre Países",
+    "byAreaTitle": "Temas internacionais, por área",
+    "byAreaIntro": "São os mesmos temas das nossas áreas de atuação, na versão para quem vive entre países.",
+    "exclusiveTitle": "Para quem tem a vida dividida entre países",
+    "exclusiveIntro": "Temas próprios de quem vive entre o Brasil e outro país.",
+    "howWeWork": "Como atuamos",
+    "seeArea": "Ver a área completa"
   }
 }

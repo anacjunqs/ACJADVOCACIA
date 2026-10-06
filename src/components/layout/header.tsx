@@ -34,17 +34,17 @@ export async function Header({ locale }: { locale: AppLocale }) {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6 xl:h-20 lg:px-8">
           <Wordmark settings={settings} locale={locale} homeLabel={t("home", { name })} />
 
-          <nav aria-label={t("mainNav")} className="hidden items-center gap-1 lg:flex">
+          <nav aria-label={t("mainNav")} className="hidden items-center gap-1 xl:flex">
             <PracticeMenu label={tn("practiceAreas")} allAreasLabel={tn("allAreas")} hub={hub} pillars={pillars} />
             {items.map((it) => (
               <NavLink
                 key={it.key}
                 href={it.href}
                 match={it.match}
-                className="inline-flex min-h-11 items-center rounded-control px-3 font-semibold text-navy hover:bg-navy-50"
+                className="inline-flex min-h-11 items-center whitespace-nowrap rounded-control px-3 font-semibold text-navy hover:bg-navy-50"
                 activeClassName="underline decoration-2 underline-offset-8"
               >
                 {it.label}
@@ -53,11 +53,12 @@ export async function Header({ locale }: { locale: AppLocale }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block">{switcher}</div>
-            <Link href="/contato" className={buttonClasses("primary", "md", "hidden whitespace-nowrap lg:inline-flex")}>
-              {tc("scheduleConsultation")}
-            </Link>
-            <div className="lg:hidden">{switcher}</div>
+            {switcher}
+            <div className="hidden xl:block">
+              <Link href="/contato" className={buttonClasses("primary", "md", "whitespace-nowrap")}>
+                {tc("scheduleConsultation")}
+              </Link>
+            </div>
             <MobileMenu
               labels={{
                 open: t("openMenu"),

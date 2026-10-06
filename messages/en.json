@@ -12,13 +12,16 @@
   },
   "header": {
     "home": "{name} — home page",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
+    "openMenu": "Menu",
+    "closeMenu": "Close",
     "mainNav": "Main navigation",
     "mobileNav": "Mobile menu",
     "language": "Language",
     "switchTo": "Switch to {language}",
-    "switchToLabel": { "pt": "Português", "en": "English" }
+    "switchToLabel": {
+      "pt": "Português",
+      "en": "English"
+    }
   },
   "nav": {
     "practiceAreas": "Practice Areas",
@@ -58,5 +61,36 @@
       "retry": "Try again",
       "home": "Go to the home page"
     }
+  },
+  "breadcrumbs": {
+    "label": "You are here",
+    "home": "Home"
+  },
+  "areas": {
+    "eyebrow": "Practice area",
+    "indexEyebrow": "What we do",
+    "forWho": "Who it is for",
+    "whenToSeek": "When to seek help",
+    "servicesTitle": "How we can help",
+    "servicesIntro": "The services are organized by group. Open the group closest to your situation.",
+    "servicesCount": "{count, plural, one {# service} other {# services}}",
+    "internationalTitle": "International work",
+    "internationalBadge": "International work",
+    "seeHub": "Explore Cross-Border Families",
+    "faqTitle": "Frequently asked questions",
+    "helpTitle": "Not sure which area fits your case?",
+    "helpText": "That is fine. Tell us your situation and we will help you find the way.",
+    "hubBadge": "Featured",
+    "hubCardText": "For those living between Brazil and other countries: marriage, children, property and inheritance in more than one place.",
+    "openArea": "View the {title} area"
+  },
+  "hub": {
+    "eyebrow": "Cross-Border Families",
+    "byAreaTitle": "International topics, by area",
+    "byAreaIntro": "These are the same topics as in our practice areas, for those living between countries.",
+    "exclusiveTitle": "For lives divided between countries",
+    "exclusiveIntro": "Topics specific to people living between Brazil and another country.",
+    "howWeWork": "How we work",
+    "seeArea": "See the full area"
   }
 }

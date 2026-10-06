@@ -61,7 +61,7 @@ export function PracticeMenu({ label, allAreasLabel, hub, pillars }: Props) {
         aria-controls={panelId}
         onClick={toggle}
         className={cn(
-          "inline-flex min-h-11 items-center gap-1.5 rounded-control px-3 font-semibold text-navy hover:bg-navy-50",
+          "inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-control px-3 font-semibold text-navy hover:bg-navy-50",
           isAreas && "underline decoration-2 underline-offset-8",
         )}
       >

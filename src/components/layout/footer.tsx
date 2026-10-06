@@ -29,7 +29,7 @@ export async function Footer({ locale }: { locale: AppLocale }) {
   const link = "inline-flex min-h-11 items-center underline-offset-4 hover:underline";
 
   return (
-    <footer className="surface-navy pb-24 lg:pb-0" data-site-footer>
+    <footer className="surface-navy pb-24 xl:pb-0" data-site-footer>
       <Container className="py-12 lg:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">

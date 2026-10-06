@@ -20,6 +20,16 @@ const FORBIDDEN = /\b(?:text|border|stroke|fill|outline|ring|decoration|divide)-
 const ALLOWED_FILES = new Set<string>([]);
 
 describe("uso do dourado", () => {
+  it("`accent-on-navy` (texto dourado) só aparece em arquivos que também usam uma superfície navy", () => {
+    const offenders: string[] = [];
+    for (const file of walk(SRC)) {
+      if (file.endsWith("globals.css")) continue;
+      const src = readFileSync(file, "utf8");
+      if (src.includes("accent-on-navy") && !/surface-navy|bg-navy\b/.test(src)) offenders.push(relative(SRC, file));
+    }
+    expect(offenders).toEqual([]);
+  });
+
   it("não há utilitários de dourado como texto/borda fora da lista permitida", () => {
     const offenders: string[] = [];
     for (const file of walk(SRC)) {

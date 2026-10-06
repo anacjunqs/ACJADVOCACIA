@@ -9,14 +9,14 @@ import { Txt } from "./txt";
  * Texto localizado (componente de servidor). Marca lang="pt" quando o EN está vazio.
  * Sem `as`, renderiza inline; com `as`, renderiza o elemento pedido.
  */
-export async function Loc({ value, as, className, locale }: { value: LS | undefined; as?: ElementType; className?: string; locale?: AppLocale }) {
+export async function Loc({ value, as, className, locale, id }: { value: LS | undefined; as?: ElementType; className?: string; locale?: AppLocale; id?: string }) {
   const current = locale ?? ((await getLocale()) as AppLocale);
   const { text, lang } = pick(value, current);
   if (!text) return null;
   const Tag = as;
   if (Tag) {
     return (
-      <Tag lang={lang} className={className}>
+      <Tag id={id} lang={lang} className={className}>
         <Txt>{text}</Txt>
       </Tag>
     );

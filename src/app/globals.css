@@ -168,6 +168,11 @@ li {
   --ring: var(--gold-300);
 }
 
+/* Dourado como texto: somente sobre navy (use dentro de .surface-navy). Verificado em tests/unit/gold-usage.test.ts */
+.accent-on-navy {
+  color: var(--gold-300);
+}
+
 /* Filete dourado: puramente decorativo */
 .rule-gold {
   display: block;
