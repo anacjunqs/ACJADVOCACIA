@@ -269,6 +269,15 @@ mark[data-pending] {
   padding: 0 0.2em;
   border-radius: 3px;
   outline: 1px dashed #8a6d00;
+  overflow-wrap: anywhere;
+}
+/* Em títulos, o marcador fica pequeno para não quebrar o layout */
+:is(h1, h2, h3) mark[data-pending] {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: middle;
 }
 
 @media (prefers-reduced-motion: reduce) {

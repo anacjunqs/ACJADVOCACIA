@@ -92,5 +92,47 @@
     "exclusiveIntro": "Topics specific to people living between Brazil and another country.",
     "howWeWork": "How we work",
     "seeArea": "See the full area"
+  },
+  "home": {
+    "heroEyebrow": "Family and Succession Law",
+    "trustLine": "{name} · OAB/{uf} {number}",
+    "pillarsTitle": "Practice areas",
+    "pillarsIntro": "Seven areas of Family and Succession Law. Choose the one closest to your situation.",
+    "viewAllAreas": "See all practice areas",
+    "hubEyebrow": "Featured",
+    "hubCta": "Explore Cross-Border Families",
+    "processEyebrow": "Step by step",
+    "processTitle": "How our service works",
+    "step": "Step {n}",
+    "founderEyebrow": "Who will help you",
+    "founderCta": "Meet the founder",
+    "valuesTitle": "Our Values",
+    "valuesCta": "See Our Values",
+    "articlesTitle": "Recent articles",
+    "articlesCta": "See all articles",
+    "videoTitle": "Featured video",
+    "videoCta": "See all videos"
+  },
+  "founder": {
+    "eyebrow": "About the founder",
+    "oab": "OAB/{uf} {number}",
+    "photoMissing": "Photo of the founder",
+    "bio": "Biography",
+    "timeline": "Career",
+    "education": "Education",
+    "languages": "Languages",
+    "associations": "Associations",
+    "approach": "How we work"
+  },
+  "values": {
+    "eyebrow": "Principles that guide our work"
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "eyebrow": "Legal information"
+  },
+  "draft": {
+    "banner": "You are viewing the draft (preview).",
+    "exit": "Exit preview"
   }
 }

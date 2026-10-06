@@ -19,3 +19,12 @@ export const text = (value: LS | undefined, locale: AppLocale): string => pick(v
 
 /** Um campo localizado conta como "disponível em EN" quando tem texto EN. */
 export const hasEnglish = (value: LS | undefined): boolean => Boolean(value?.en?.trim());
+
+import type { LRich, RichBlock } from "@/lib/content/types";
+
+/** Rich text no idioma pedido; se o EN estiver vazio, devolve o PT com `lang: "pt"`. */
+export function pickRich(value: LRich | undefined, locale: AppLocale): { blocks: RichBlock[]; lang?: "pt" } {
+  if (!value) return { blocks: [] };
+  if (locale === "en" && value.en && value.en.length > 0) return { blocks: value.en };
+  return { blocks: value.pt, lang: locale === "en" ? "pt" : undefined };
+}

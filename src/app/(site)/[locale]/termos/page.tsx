@@ -1,19 +1,21 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { StubPage } from "@/components/ui/stub-page";
-import { pageMetadata } from "@/lib/seo/metadata";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { LegalPageView } from "@/components/sections/legal-page-view";
+import { getLegalPage } from "@/lib/content";
 import { getLocaleParam } from "@/lib/i18n/params";
+import { pageMetadata, bothLocales } from "@/lib/seo/metadata";
+import { pick } from "@/lib/i18n/localize";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const locale = await getLocaleParam(params);
-  const t = await getTranslations({ locale, namespace: "nav" });
-  return pageMetadata({ locale, alternates: { pt: "/termos", en: "/termos" }, title: t("contact") });
+  const page = await getLegalPage("terms");
+  return pageMetadata({ locale, alternates: bothLocales("/termos"), title: pick(page.title, locale).text });
 }
 
 export default async function Page({ params }: Props) {
   const locale = await getLocaleParam(params);
   setRequestLocale(locale);
-  const t = await getTranslations("nav");
-  return <StubPage title={t("contact")} />;
+  await getTranslations("legal");
+  return <LegalPageView id="terms" locale={locale} />;
 }

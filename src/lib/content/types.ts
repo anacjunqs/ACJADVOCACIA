@@ -85,6 +85,8 @@ export type PillarContent = {
   whenToSeek: LS;
   internationalIntro?: LS;
   faq: FaqItem[];
+  /** Vídeo relacionado (id do documento no CMS). */
+  videoId?: string;
 };
 
 export type ArticleCategory = { id: string; title: LS };

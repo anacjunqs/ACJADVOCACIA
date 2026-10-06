@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { serif, sans } from "@/lib/fonts";
@@ -35,7 +37,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const t = await getTranslations("common");
+  const [t, td, draft] = await Promise.all([getTranslations("common"), getTranslations("draft"), draftMode()]);
 
   return (
     <html lang={htmlLang[locale]} className={`${serif.variable} ${sans.variable}`}>
@@ -49,6 +51,19 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             {children}
           </main>
           <Footer locale={locale} />
+          {draft.isEnabled && (
+            <>
+              <VisualEditing />
+              <div className="surface-navy fixed bottom-20 left-4 z-50 flex items-center gap-3 rounded-control px-4 py-2 text-sm shadow-soft xl:bottom-4">
+                <span>{td("banner")}</span>
+                {/* Recarga completa de propósito: precisa passar pela rota que desliga o modo de rascunho. */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a href="/api/draft-mode/disable" className="font-bold underline underline-offset-4">
+                  {td("exit")}
+                </a>
+              </div>
+            </>
+          )}
         </NextIntlClientProvider>
       </body>
     </html>

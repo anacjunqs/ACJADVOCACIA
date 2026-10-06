@@ -64,6 +64,11 @@ export async function Footer({ locale }: { locale: AppLocale }) {
 
           <div>
             <h2 className="font-sans text-sm font-bold uppercase tracking-[0.14em] text-navy-100">{t("contact")}</h2>
+            {!settings.email && !settings.phone && !wa && !address && !hours && (
+              <p className="mt-3 text-navy-100">
+                <Txt>{"[PREENCHER: e-mail, telefone, WhatsApp, endereço e horário]"}</Txt>
+              </p>
+            )}
             <ul className="mt-3 space-y-1">
               {settings.email && (
                 <li>

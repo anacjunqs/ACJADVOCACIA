@@ -92,5 +92,47 @@
     "exclusiveIntro": "Temas próprios de quem vive entre o Brasil e outro país.",
     "howWeWork": "Como atuamos",
     "seeArea": "Ver a área completa"
+  },
+  "home": {
+    "heroEyebrow": "Direito de Família e Sucessões",
+    "trustLine": "{name} · OAB/{uf} {number}",
+    "pillarsTitle": "Áreas de atuação",
+    "pillarsIntro": "Sete áreas do Direito de Família e Sucessões. Escolha a que mais se aproxima da sua situação.",
+    "viewAllAreas": "Ver todas as áreas",
+    "hubEyebrow": "Em destaque",
+    "hubCta": "Conheça Famílias entre Países",
+    "processEyebrow": "Passo a passo",
+    "processTitle": "Como funciona o atendimento",
+    "step": "Etapa {n}",
+    "founderEyebrow": "Quem atende você",
+    "founderCta": "Conheça a fundadora",
+    "valuesTitle": "Nossos Valores",
+    "valuesCta": "Ver Nossos Valores",
+    "articlesTitle": "Artigos recentes",
+    "articlesCta": "Ver todos os artigos",
+    "videoTitle": "Vídeo em destaque",
+    "videoCta": "Ver todos os vídeos"
+  },
+  "founder": {
+    "eyebrow": "Sobre a fundadora",
+    "oab": "OAB/{uf} {number}",
+    "photoMissing": "Foto da fundadora",
+    "bio": "Biografia",
+    "timeline": "Trajetória",
+    "education": "Formação",
+    "languages": "Idiomas",
+    "associations": "Associações",
+    "approach": "Como trabalhamos"
+  },
+  "values": {
+    "eyebrow": "Princípios que orientam o nosso trabalho"
+  },
+  "legal": {
+    "updated": "Última atualização: {date}",
+    "eyebrow": "Informações legais"
+  },
+  "draft": {
+    "banner": "Você está vendo o rascunho (pré-visualização).",
+    "exit": "Sair da pré-visualização"
   }
 }
